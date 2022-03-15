@@ -25,3 +25,10 @@ class PassagemForms(forms.Form):
             raise forms.ValidationError('Origem inválida: Não inclua números')
         else:
             return origem
+
+    def clean_destino(self):
+        destino = self.cleaned_data.get('destino')
+        if any(char.isdigit() for char in destino):
+            raise forms.ValidationError('Destino inválida: Não inclua números')
+        else:
+            return destino
